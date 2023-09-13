@@ -1,0 +1,13 @@
+*** GIT ORDER OF OPERATION ***
+	1. Make a local directory for your project
+	2. git init (initialize a git repo in the root of the project folder)
+	3. Add/create any files, you can use command "touch new_file.txt"
+	4. git status (display the current status of the local repository)
+	5. git add <filenames>
+	6. git commit -m "Your message about the commit" (capture a snapshot of the project's currently staged changes)
+
+
+
+MISC.
+
+git branch (display all branches in the repo. an asterisk indicates which branch you are on)
