@@ -1,13 +1,19 @@
 *** GIT ORDER OF OPERATION ***
-	1. Make a local directory for your project
+	1a. Make a local directory for your project
+	1b. or use git clone <URL to repo>(create a copy of a specific repository or branch within a repository)
 	2. git init (initialize a git repo in the root of the project folder)
 	3. Add/create any files, you can use command "touch new_file.txt"
 	4. git status (display the current status of the local repository)
 	5. git add <filenames>
 	6. git commit -m "Your message about the commit" (capture a snapshot of the project's currently staged changes)
+	7. git push (push your current commit to github. Will default to the main branch unless you specify a specific branch with git push origin my-new-branch)
+	8. Create a pull request / Merge a pull request (Do this from github > Open a pull request. A pull request (or PR) is a way to alert a repo's owners that you want to make some changes to their code. Even if you're not collaborating this is good practice and hellps keep a more complete history of your updates and to make sure you always create a new branch when making changes.)
+	9. Once branches are successfully merged, delete the unused branch (Do this from github)
+	10. git pull origin master -or just- git pull (Get the most recent changes that you or others have merged on GitHub)
 
 
 
-MISC.
-
-git branch (display all branches in the repo. an asterisk indicates which branch you are on)
+*** GIT BRANCHES ***
+ - git branch (display all branches in the repo. an asterisk indicates which branch you are on)
+ - git checkout -b <my branch name> (will automatically create a new branch and move you to that branch, off of the primary branch.)
+ - git push origin <yourbranchname> (push changes onto a new branch on GitHub. When you clone a remote repository to your local machine, git creates an alias for you. In nearly all cases this alias is called "origin.")
