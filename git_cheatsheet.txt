@@ -1,19 +1,69 @@
 *** GIT ORDER OF OPERATION ***
 	1a. Make a local directory for your project
-	1b. or use git clone <URL to repo>(create a copy of a specific repository or branch within a repository)
-	2. git init (initialize a git repo in the root of the project folder)
-	3. Add/create any files, you can use command "touch new_file.txt"
-	4. git status (display the current status of the local repository)
-	5. git add <filenames>
-	6. git commit -m "Your message about the commit" (capture a snapshot of the project's currently staged changes)
-	7. git push (push your current commit to github. Will default to the main branch unless you specify a specific branch with git push origin my-new-branch)
+	1b. or use $ git clone <URL to repo> (create a copy of a specific repository or branch within a repository in your current directory)
+	2. $ git init (initialize a git repo in the root of the project folder)
+	3. Add/create any files, you can use command "$ touch some_file.txt
+	4. $ git status (display the current status of the local repository)
+	5. STAGE your changes: $ git add <filenames> (or $ git add . to stage the whole project)
+	6. COMMIT your changes: $ git commit -m "Your message about the commit" (capture a snapshot of the project's currently staged changes)
+	7. PUSH your changes: $ git push (push your current commit to github. Will default to the main branch unless you specify a specific branch with git push origin my-new-branch)
 	8. Create a pull request / Merge a pull request (Do this from github > Open a pull request. A pull request (or PR) is a way to alert a repo's owners that you want to make some changes to their code. Even if you're not collaborating this is good practice and hellps keep a more complete history of your updates and to make sure you always create a new branch when making changes.)
 	9. Once branches are successfully merged, delete the unused branch (Do this from github)
 	10. git pull origin master -or just- git pull (Get the most recent changes that you or others have merged on GitHub)
 
 
 
-*** GIT BRANCHES ***
- - git branch (display all branches in the repo. an asterisk indicates which branch you are on)
- - git checkout -b <my branch name> (will automatically create a new branch and move you to that branch, off of the primary branch.)
- - git push origin <yourbranchname> (push changes onto a new branch on GitHub. When you clone a remote repository to your local machine, git creates an alias for you. In nearly all cases this alias is called "origin.")
+*** BRANCHES AND NAVIGATING GIT *** 
+Similar to how you can change directories and move in and out of folders, you can move between Git branches. Each branch is built off of another (starting from "master") but changes made in one are not reflected in others until merging. It can be used as a timeline or for different areas of the project. 
+
+	$ git branch (display all branches in the repo. an asterisk indicates which branch you are on)
+
+	$ git checkout -b <branch name> (To create a new branch and switch to it)
+
+	$ git checkout <branch name> (To switch to an existing branch)
+
+	$ git merge <branch name> (To merge branches (<branch name> into the current branch ))
+
+	$ git push origin <yourbranchname> (push changes onto a new branch on GitHub. When you clone a remote repository to your local machine, git creates an alias for you. In nearly all cases this alias is called "origin.")
+
+	$ git fetch (To get new branches on your local repo)
+
+	$ git branch -d <branch name> (To delete a branch (locally)
+
+	$ git status (shows the current state of the git repo)
+
+	$ git log (shows the history of git commits for the current branch)
+
+	$ git diff (shows changes since last commit)
+
+
+
+*** GIT HAPPENS ***
+
+Accidentally committed an error but haven't pushed yet 
+	$ git reset HEAD~<n> (to undo last <n> commits and keep changes)
+	$ git reset --hard HEAD~<n> t(o undo last <n> commits and discard changes)
+
+
+Committed an error and pushed
+	$ git revert <commit id> (reverts the commit with the specified id)
+	$ git revert HEAD^ (reverts the second to last commit)
+
+
+Forgot to pull before making changes and pulling will delete everything you did
+	$ git stash (to stash the changes) 
+	$ git stash pop (to bring the stashed changes back)
+
+
+When an error is introduced at some commit - You can mark the commits where things worked and where they didn't and compare using bisect, a binary search which continues until you get to the commit with the error:
+	$ git bisect start to start bisecting
+	$ git bisect bad to mark the current commit as 
+	$ git bisect good revision to mark the last known good commit
+
+Nuclear options:
+If your local has the working updated version but the remote repo has errors and is out of date you can force push
+	$ git -f push
+
+If your local has a lot of errors and you don't want to track all of them down
+	$ git branch -d <branch name> to delete the branch and then
+	$ git pull to get the branch again

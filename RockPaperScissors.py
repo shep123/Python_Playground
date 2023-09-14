@@ -18,7 +18,11 @@ def play_match():
 		playerChoice = input("{}: Select 'rock', 'paper', or 'scissors' ".format(player_name))
 		compChoice = rps_choices[random.randint(0,2)]
 
-		if playerChoice == compChoice:
+		if playerChoice != "rock" and playerChoice != "paper" and playerChoice != "scissors": # validate player input
+			print("That is not a valid choice. \n")
+			playerChoice = input("{}: Select 'rock', 'paper', or 'scissors' ".format(player_name))
+
+		elif playerChoice == compChoice:
 			print("The computer threw {}. \nYou tied round {}. \n".format(compChoice, game_round))
 			game_round += 1
 
@@ -43,27 +47,13 @@ def play_match():
 
 
 def compare(playerChoice, compChoice):
-	if playerChoice != "rock" and playerChoice != "paper" and playerChoice != "scissors":
-		print("That is not a valid choice.")
-		playerChoice = input("Please select 'rock', 'paper', or 'scissors' ")
-		
-		if playerChoice == compChoice:
-			# PICK UP HERE. The else statement below throws an error on a tie.
-
-		else:
-			compare(playerChoice, compChoice) #recursion
-
-	
-
-
-	else:
-		results = {("rock", "paper") : False,
-				   ("rock", "scissors") : True,
-				   ("paper", "scissors") : False,
-				   ("paper", "rock") : True,
-				   ("scissors", "rock") : False,
-				   ("scissors", "paper") : True}
-		return results[(playerChoice,compChoice)]
+	results = {("rock", "paper") : False,
+			   ("rock", "scissors") : True,
+			   ("paper", "scissors") : False,
+			   ("paper", "rock") : True,
+			   ("scissors", "rock") : False,
+			   ("scissors", "paper") : True}
+	return results[(playerChoice,compChoice)]
 
 
 while play_condition != "exit":
